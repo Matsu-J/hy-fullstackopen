@@ -49,6 +49,19 @@ const App = () => {
     setScore(score-1)
   }
 
+  if (all <= 0) {
+    return (
+      <div>
+      <Header text="Give feedback!"/>
+      <Button click={handleGood} text="Good"/>
+      <Button click={handleNeutral} text="Neutral"/>
+      <Button click={handleNegative} text="Bad"/>
+      <Header text="Statistics"/>
+      <p>No feedback given!</p>
+    </div>
+    )
+  }
+
   return (
     <div>
       <Header text="Give feedback!"/>
