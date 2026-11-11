@@ -14,7 +14,7 @@ const Button = ({click, text}) => {
   )
 }
 
-const Stat = ({type, amount}) => {
+const Statistics = ({type, amount}) => {
   return (
     <p>{type}: {amount}</p>
   )
@@ -56,12 +56,12 @@ const App = () => {
       <Button click={handleNeutral} text="Neutral"/>
       <Button click={handleNegative} text="Bad"/>
       <Header text="Statistics"/>
-      <Stat type="Good" amount={good}/>
-      <Stat type="Neutral" amount={neutral}/>
-      <Stat type="Bad" amount={bad}/>
-      <Stat type="All" amount={all}/>
-      <Stat type="Average" amount={average}/>
-      <Stat type="Positive" amount={positive}/>
+      <Statistics type="Good" amount={good}/>
+      <Statistics type="Neutral" amount={neutral}/>
+      <Statistics type="Bad" amount={bad}/>
+      <Statistics type="All" amount={all}/>
+      <Statistics type="Average" amount={average}/>
+      <Statistics type="Positive" amount={positive}/>
     </div>
   )
 }
