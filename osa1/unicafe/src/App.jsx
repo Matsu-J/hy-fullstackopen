@@ -8,17 +8,41 @@ const Header = ({text}) => {
   )
 }
 
+
 const Button = ({click, text}) => {
   return (
     <button onClick={click}>{text}</button>
   )
 }
 
-const Statistics = ({type, amount}) => {
-  return (
+
+const StatisticLine = ({type, amount}) => {
+  return(
     <p>{type}: {amount}</p>
   )
 }
+
+
+const Statistics = ({good, neutral, bad, all, average, positive}) => {
+
+  if (all <= 0) {
+    return (
+      <p>No feedback given!</p>
+    )
+  }
+  
+  return (
+    <div>
+      <StatisticLine type="Good" amount={good}/>
+      <StatisticLine type="Neutral" amount={neutral}/>
+      <StatisticLine type="Bad" amount={bad}/>
+      <StatisticLine type="All" amount={all}/>
+      <StatisticLine type="Average" amount={average}/>
+      <StatisticLine type="Positive" amount={positive}/>
+    </div>
+  )
+}
+
 
 const App = () => {
   // tallenna napit omaan tilaansa
@@ -49,19 +73,6 @@ const App = () => {
     setScore(score-1)
   }
 
-  if (all <= 0) {
-    return (
-      <div>
-      <Header text="Give feedback!"/>
-      <Button click={handleGood} text="Good"/>
-      <Button click={handleNeutral} text="Neutral"/>
-      <Button click={handleNegative} text="Bad"/>
-      <Header text="Statistics"/>
-      <p>No feedback given!</p>
-    </div>
-    )
-  }
-
   return (
     <div>
       <Header text="Give feedback!"/>
@@ -69,12 +80,7 @@ const App = () => {
       <Button click={handleNeutral} text="Neutral"/>
       <Button click={handleNegative} text="Bad"/>
       <Header text="Statistics"/>
-      <Statistics type="Good" amount={good}/>
-      <Statistics type="Neutral" amount={neutral}/>
-      <Statistics type="Bad" amount={bad}/>
-      <Statistics type="All" amount={all}/>
-      <Statistics type="Average" amount={average}/>
-      <Statistics type="Positive" amount={positive}/>
+      <Statistics good={good} neutral={neutral} bad={bad} all={all} positive={positive} average={average}/>
     </div>
   )
 }
