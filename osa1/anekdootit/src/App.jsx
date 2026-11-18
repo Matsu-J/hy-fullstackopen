@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
-const Paragraph = ({content}) => {
+const Paragraph = ({ content }) => {
   return (
     <p>{content}</p>
   )
 }
 
-const Button = ({click, text}) => {
+const Button = ({ click, text }) => {
   return (
     <button onClick={click}>{text}</button>
   )
@@ -23,7 +23,7 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when dianosing patients.',
     'The only way to go fast, is to go well.'
   ]
-   
+
   const [selected, setSelected] = useState(0)
   const amountOfAnecdotes = anecdotes.length
 
@@ -31,10 +31,29 @@ const App = () => {
     setSelected(Math.floor(Math.random() * (amountOfAnecdotes)))
   }
 
+  const votes = {}
+
+  for (let i = 0; i < amountOfAnecdotes; i++) {
+    votes[i] = 0
+  }
+
+  const [copy, setCopy] = useState({ ...votes })
+
+  const upvote = () => {
+    setCopy(prevCopy => ({
+      ...prevCopy,
+      [selected]: copy[selected] + 1
+    })
+    )
+  }
+  console.log(copy)
+
   return (
     <div>
-      <Paragraph content={anecdotes[selected]}/>
-      <Button click={nextAnecdote} text="Next anecdote"/>
+      <Paragraph content={anecdotes[selected]} />
+      <Paragraph content={`Has ${copy[selected]} votes`} />
+      <Button click={nextAnecdote} text="Next anecdote" />
+      <Button click={upvote} text="Upvote" />
     </div>
   )
 }
